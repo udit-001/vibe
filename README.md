@@ -14,7 +14,11 @@ A lightweight catalog of tools used with both Claude Code and Pi.
 ## Pi Extensions
 
 ### Project
-- Codex Status: .pi/extensions/codex-status
+- Answer: pi-extensions/answer
+- Codex Status: pi-extensions/codex-status
+- Powerline Footer: pi-extensions/powerline-footer
+- Review: pi-extensions/review
+- Todos: pi-extensions/todos
 
 ### Global
 - [pi-interactive-shell](https://github.com/nicobailon/pi-interactive-shell)

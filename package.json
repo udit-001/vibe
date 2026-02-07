@@ -1,0 +1,24 @@
+{
+  "name": "vibe-pi-pack",
+  "version": "0.1.0",
+  "description": "Pi extensions for the Vibe project",
+  "type": "module",
+  "keywords": [
+    "pi-package",
+    "pi-extension"
+  ],
+  "pi": {
+    "extensions": [
+      "./pi-extensions"
+    ],
+    "prompts": [
+      "./commands"
+    ]
+  },
+  "peerDependencies": {
+    "@mariozechner/pi-ai": "*",
+    "@mariozechner/pi-coding-agent": "*",
+    "@mariozechner/pi-tui": "*",
+    "@sinclair/typebox": "*"
+  }
+}
