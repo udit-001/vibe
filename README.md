@@ -23,6 +23,7 @@ A lightweight catalog of tools used with both Claude Code and Pi.
 ### Global
 - [pi-interactive-shell](https://github.com/nicobailon/pi-interactive-shell)
 - [pi-mcp-adapter](https://github.com/nicobailon/pi-mcp-adapter)
+- [pi-rewind-hook](https://github.com/nicobailon/pi-rewind-hook)
 - [@tmustier/pi-tab-status](https://github.com/tmustier/pi-extensions/tree/main/tab-status)
 - [@tmustier/pi-usage-extension](https://github.com/tmustier/pi-extensions/tree/main/usage-extension)
 - [pi-powerline-footer](https://github.com/nicobailon/pi-powerline-footer)
