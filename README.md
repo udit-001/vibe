@@ -22,6 +22,7 @@ A lightweight catalog of tools used with both Claude Code and Pi.
 - Permission: pi-extensions/permission
 - Handoff: pi-extensions/handoff (prepare a prompt for a focused new session)
 - Input Transform: pi-extensions/input-transform (rewrite special inputs or handle commands before they reach the LLM)
+- Prompt Stash: pi-extensions/prompt-stash (stash input with Alt+S, browse with /stashed-prompts)
 - Tools: pi-extensions/tools (enable/disable Pi tools interactively)
 - Titlebar Spinner: pi-extensions/titlebar-spinner (show an animated spinner in the terminal title while the agent runs)
 
