@@ -20,6 +20,10 @@ A lightweight catalog of tools used with both Claude Code and Pi.
 - Review: pi-extensions/review
 - Todos: pi-extensions/todos
 - Permission: pi-extensions/permission
+- Handoff: pi-extensions/handoff (prepare a prompt for a focused new session)
+- Input Transform: pi-extensions/input-transform (rewrite special inputs or handle commands before they reach the LLM)
+- Tools: pi-extensions/tools (enable/disable Pi tools interactively)
+- Titlebar Spinner: pi-extensions/titlebar-spinner (show an animated spinner in the terminal title while the agent runs)
 
 **Permission commands (in Pi):**
 - `/permission` (or `/permission <minimal|low|medium|high>`) — view/change permission level
@@ -34,6 +38,7 @@ A lightweight catalog of tools used with both Claude Code and Pi.
 - [@tmustier/pi-tab-status](https://github.com/tmustier/pi-extensions/tree/main/tab-status)
 - [@tmustier/pi-usage-extension](https://github.com/tmustier/pi-extensions/tree/main/usage-extension)
 - [pi-powerline-footer](https://github.com/nicobailon/pi-powerline-footer)
+- [threads](https://github.com/laulauland/dotfiles/tree/main/shared/.pi/agent/extensions/threads)
 
 ## MCP Servers
 - Exa MCP: https://docs.exa.ai/reference/exa-mcp
