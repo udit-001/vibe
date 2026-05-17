@@ -13,9 +13,18 @@ This guide documents how to set up [jot](https://github.com/badlogic/jot) — a 
 
 ## Prerequisites
 
+Choose your deployment method:
+
+**For Docker deployment:**
 - Docker and Docker Compose
 - Node.js (for the jot CLI)
 - `curl` (for API setup steps)
+
+**For Windows deployment:**
+- Node.js
+- PM2 (`npm install -g pm2`)
+- PowerShell (for commands)
+- `curl` (or use PowerShell's `Invoke-RestMethod`)
 
 ---
 
@@ -339,6 +348,102 @@ docker exec -it jot sh
 
 ---
 
+## Alternative: Windows Deployment with PM2
+
+For Windows users who prefer not to use Docker, [PM2](https://pm2.keymetrics.io/) is a production-grade process manager for Node.js. It keeps jot running in the background, restarts it if it crashes, and can start it automatically on boot.
+
+### Install PM2 and jot
+
+```powershell
+# Install PM2 globally
+npm install -g pm2
+
+# Install jot server globally
+npm install -g @mariozechner/jot
+```
+
+### Create a data directory
+
+```powershell
+# Create a directory for jot data
+mkdir C:\jot-data
+```
+
+### Start jot with PM2
+
+```powershell
+# Start jot as a background process
+pm2 start "jot serve --port=3210 --data=C:\jot-data" --name jot
+```
+
+### Save the PM2 configuration and enable startup
+
+```powershell
+# Save the current process list
+pm2 save
+
+# Generate a startup script (run PowerShell as Administrator)
+pm2 startup windows
+# Follow the instructions it prints (usually involves running a command)
+```
+
+### Manage jot with PM2
+
+```powershell
+pm2 status jot        # Check if jot is running
+pm2 logs jot          # View logs
+pm2 restart jot       # Restart
+pm2 stop jot          # Stop
+pm2 delete jot        # Remove from PM2
+```
+
+### PM2 config file (recommended)
+
+Create `jot-pm2.json`:
+
+```json
+{
+  "apps": [{
+    "name": "jot",
+    "script": "jot",
+    "args": ["serve", "--port=3210", "--data=C:\\jot-data"],
+    "instances": 1,
+    "exec_mode": "fork",
+    "env": {
+      "NODE_ENV": "production"
+    },
+    "log_file": "C:\\jot-data\\logs\\combined.log",
+    "out_file": "C:\\jot-data\\logs\\out.log",
+    "error_file": "C:\\jot-data\\logs\\error.log",
+    "autorestart": true,
+    "max_restarts": 10,
+    "min_uptime": "10s"
+  }]
+}
+```
+
+Then start with:
+
+```powershell
+pm2 start jot-pm2.json
+pm2 save
+pm2 startup
+```
+
+### Verify it's running
+
+```powershell
+# Check if jot is responding
+curl http://localhost:3210
+
+# Check the data directory
+dir C:\jot-data\notes
+```
+
+> **Note:** After setting up, continue from [Step 4: Install the CLI](#step-4-install-the-cli) to configure authentication and start collaborating.
+
+---
+
 ## Data Persistence
 
 All data is stored in a Docker volume (`jot_data`) mounted at `/app/data`:
@@ -373,7 +478,9 @@ The volume persists across container restarts and rebuilds.
 | `401 Unauthorized` | API key is invalid or expired. Create a new one via the web UI or `/api/keys` |
 | `Error 400: oldText is empty` | The `edit` command requires non-empty `oldText`. Use `update` to replace full markdown instead |
 | Build fails with `npm ci --omit=dev` | Network timeout. Fix Dockerfile to copy `node_modules` from `deps` stage |
-| Container won't start | Check port 3210 isn't in use: `lsof -i :3210` |
+| Container won't start | Check port 3210 isn't in use: `lsof -i :3210` (Linux/Mac) or `netstat -ano | findstr 3210` (Windows) |
+| PM2 process not found | Ensure PM2 is installed: `npm install -g pm2` |
+| PM2 startup fails | Run PowerShell as Administrator for `pm2 startup windows` |
 | Reviewer can't comment | Check that `shareAccess` is set to `comment` or `edit` on the note |
 
 ---
