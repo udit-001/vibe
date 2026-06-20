@@ -51,6 +51,9 @@ A lightweight catalog of tools used with both Claude Code and Pi.
 ## Status Lines
 - CCometixLine: https://github.com/Haleclipse/CCometixLine
 
+## Skills
+- Tufte Chart Skills: https://github.com/aref-vc/tufte-claude-skill
+
 ## LLMs.txt References
 - Langgraph: https://langchain-ai.github.io/langgraph/llms.txt
 - Pydantic AI: https://ai.pydantic.dev/llms.txt
