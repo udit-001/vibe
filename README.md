@@ -1,6 +1,44 @@
 # AI Coding Toolkit
 
-A lightweight catalog of tools used with both Claude Code and Pi.
+A lightweight catalog of tools used with Claude Code, Pi, and opencode.
+
+## Skills
+
+Opencode skills live in `skills/`. Each is a folder with a `SKILL.md` that teaches the agent a reusable workflow.
+
+### image-fetcher
+
+Fetch a free-licensed image and drop it into the project — no API keys, no setup. Searches Openverse, NASA, and Wikimedia Commons for CC0/public-domain photos and downloads them to a scratch dir for preview.
+
+- **Sources** — `openverse` (general photos, the default), `nasa` (space/science/history, all public domain), `wikimedia` (landmarks/diagrams/SVGs/historical), or `all` for maximum breadth.
+- **License** — defaults to CC0/public-domain (no attribution needed); `-l any` widens to CC-BY etc. with credit recorded in `attribution.json`.
+- **Prerequisites** — [`uv`](https://docs.astral.sh/uv/) on PATH. It installs `requests` automatically on first run; no manual `pip install`.
+
+**Install:**
+
+```bash
+# global — available in every project
+cp -r skills/image-fetcher ~/.agents/skills/
+
+# or symlink — stays in sync with this repo
+ln -s "$(pwd)/skills/image-fetcher" ~/.agents/skills/image-fetcher
+```
+
+**Usage:** Once installed, just ask the agent — "find me a hero photo of a modern office", "add a picture of mars", "fetch images for this page". The agent runs `fetch.py` under the hood. To use the CLI directly:
+
+```bash
+uv run skills/image-fetcher/fetch.py "modern office" -d                # download 5 to scratch
+uv run skills/image-fetcher/fetch.py "mars surface" -s nasa -d         # NASA source
+uv run skills/image-fetcher/fetch.py "eiffel tower" -s wikimedia --full -d  # full-res
+```
+
+**Higher rate limits (optional):** The skill works keyless by default. If you hit Openverse's 200/day anonymous cap, run the setup wizard for free OAuth credentials (200/day → 10,000/day):
+
+```bash
+bash skills/image-fetcher/setup.sh
+```
+
+See [`SKILL.md`](skills/image-fetcher/SKILL.md) and [`SOURCES.md`](skills/image-fetcher/SOURCES.md) for full details.
 
 ## Claude Code Plugins
 - Voice Mode: https://github.com/mbailey/voicemode
