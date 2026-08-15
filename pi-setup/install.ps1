@@ -49,7 +49,7 @@ if (-not (Test-Pi)) {
     Write-Host ""
     Write-Host "Pi installed, but not visible in this window."
     Write-Host "Open a new terminal and run again:"
-    Write-Host "  curl.exe -sSL https://cdn.jsdelivr.net/gh/udit-001/vibe@main/pi-setup/install.ps1 | iex"
+    Write-Host "  irm https://cdn.jsdelivr.net/gh/udit-001/vibe@7cd55827f57bdc7550a078e6d3260683728a88b5/pi-setup/install.ps1 | iex"
     exit 0
 }
 

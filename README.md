@@ -7,7 +7,7 @@ A lightweight catalog of tools used with Claude Code, Pi, and opencode.
 One line. PowerShell:
 
 ```powershell
-curl.exe -sSL https://cdn.jsdelivr.net/gh/udit-001/vibe@main/pi-setup/install.ps1 | iex
+irm https://cdn.jsdelivr.net/gh/udit-001/vibe@7cd55827f57bdc7550a078e6d3260683728a88b5/pi-setup/install.ps1 | iex
 ```
 
 Installs [Pi](https://github.com/earendil-works/pi-coding-agent) (Node and Git included if missing), then adds:
