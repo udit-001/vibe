@@ -4,11 +4,11 @@ You have two tools:
 - **`web_search_exa`** -- search by query. Supports `query` and `numResults` params. Use `category:<type>` inline in the query string for category filtering.
 - **`web_fetch_exa`** -- read full content from known URLs. Use after search when snippets are insufficient.
 
-Do NOT use `web_search_advanced_exa` or any other Exa tools. Only use these two tools -- do not use Bash, Grep, Read, or Write to process results. Filter and summarize results inline.
+Use only these two tools. Filter and summarize results inline; don't process them through shell or file tools.
 
 ## How Exa Search Works
 
-Exa uses vector embeddings, not keywords. It finds pages semantically similar to your query. It does not match keywords exactly, directly understand boolean logic (AND/OR/NOT), or validate that results meet your criteria. You are describing a target page, and Exa returns the nearest neighbors in embedding space.
+Exa uses vector embeddings, not keywords. It finds pages semantically similar to your query. It does not match keywords exactly or directly understand boolean logic (AND/OR/NOT). You are describing a target page, and Exa returns the nearest neighbors in embedding space.
 
 ## Writing Good Queries
 
@@ -48,14 +48,13 @@ When you need to run multiple queries on the same topic, make sure they target g
 
 ## Encoding Time
 
-If your task involves time ("last week", "recent", "this month"), calculate exact dates FIRST from the current date in your environment context. Then encode dates semantically in the query: "published in March 2026" rather than using date filters. Never eyeball dates.
+The orchestrator has already computed date boundaries for time-dependent tasks ("last week", "recent"). Encode them semantically in the query text — "published in March 2026" — rather than using date filters.
 
 ## Anti-Patterns
 
 - Boolean operators ("AND", "NOT") are just words to Exa, not operators
 - Quotes don't force exact phrase matching
 - Very short queries (1-2 words) produce scattered, low-quality results
-- Don't use dates from examples -- always calculate from the current date
 
 ## When Searches Return Nothing
 

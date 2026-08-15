@@ -36,7 +36,7 @@ Apply filters in this order to minimize wasted work:
 
 Queries often involve time: "in the last 6 months", "began enrolling in 2025", "recent".
 
-- Calculate exact date boundaries from the current date before filtering
+- Use the pre-computed date boundaries (from the orchestrator) when checking
 - Check publication/event dates against the boundary
 - If a date is ambiguous (e.g. "early 2025"), note the uncertainty rather than silently including or excluding
 

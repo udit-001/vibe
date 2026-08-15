@@ -1,6 +1,6 @@
 ---
 name: search
-description: "Deep research powered by Exa. Use for lead generation, literature reviews, deep dives, competitive analysis, or any query where one search falls short, including phrases like 'research this', 'find everything about', 'find me all', or 'deep dive on'."
+description: "Deep research powered by Exa. Use for lead generation, literature reviews, competitive analysis, or any query where one search falls short — triggers like 'research this', 'find everything about', 'find me all', or 'deep dive on'."
 ---
 
 # Exa Research Orchestrator
@@ -62,6 +62,8 @@ Note: if the user explicitly asks for something (e.g. "100" of something), conti
 8. **Score and rank**: For "best of" (e.g. "what's the best ___?") queries, define the scoring criteria explicitly, then rank.
 9. **Synthesize narrative**: For research queries, organize findings by theme and write prose with citations.
 
+**Done when:** you've settled the complexity level (confirming with the user when ambiguous) and written the concrete checks — what makes a result qualify and which fields to capture — before any search.
+
 ## Step 2: Dispatch Subagents
 
 ### What subagents do
@@ -73,9 +75,9 @@ Subagents run Exa searches and process the results. They keep raw search output 
 
 ### How to dispatch
 
-Use the **Agent tool** to dispatch subagents. Reference file paths are relative to the directory this file was loaded from.
+Use your **subagent tool** to dispatch subagents. Reference file paths are relative to the directory this file was loaded from.
 
-Use `model: "haiku"` for subagents.
+Use a cheap, fast model for subagents.
 
 Tell each subagent:
 1. Which reference file(s) to read for instructions (always include the absolute path)
@@ -127,7 +129,7 @@ Give the sub-question directly to the subagent in its prompt.
 
 - Aim for 3-5 searches per subagent
 - Parallelize aggressively — independent workstreams should be separate subagents launched in a single message
-- Do not use `run_in_background` — dispatch all subagents in one message and wait for their results
+- Launch all subagents in one message and wait for all of them — don't run them in the background
 - For per-seed work (enriching a list of 20 companies), batch 3-5 seeds per subagent
 
 ### Token isolation
@@ -138,6 +140,8 @@ Never run bulk searches in your main context. The whole point of subagents is to
 
 - **Subagent returns empty**: Rephrase queries with different angles, not synonyms. If still empty, the topic may have limited web coverage -- report that.
 - **Subagent returns off-topic results**: Queries were too vague. Retry with longer, more specific queries.
+
+**Done when:** every subagent has a specific task, the reference files to read, and a required return format, and all were launched in one message.
 
 ## Step 3: Compile Results
 
@@ -158,7 +162,7 @@ After subagents return:
 
 If you used subagents, open with: "I used Exa to review {X} sources across {Y} subagents. Here's what was found:" (X = sum of `sources_reviewed` across all subagents and passes plus any direct searches you ran; Y = total subagents dispatched. Pluralize naturally.)
 
-Then: Format output beautifully, filling up no more than one scroll length of the claude code screen. Include hyperlinked text where relevant. Below it, you may also include things (in a short, easy-to-read format) that:
+Then: Format output beautifully, filling no more than one screen-length. Include hyperlinked text where relevant. Below it, you may also include things (in a short, easy-to-read format) that:
 - ("Result") directly answer the original user request (in few words; make every word count)
 - ("Process") include anything worth noting about your process and what you consider to be high-signal in this domain vs. what you filtered out.
 - ("Patterns") any patterns identified that are non-obvious, require n-th order thinking, and are not included or alluded to in the rest of the output but might be interesting to the user.
@@ -170,6 +174,8 @@ If it's impossible to fit the full output in a single screen, write a file in th
 - No emojis unless the user requested them
 - Include in-line 1-word or multi-word hyperlinks throughout outputs where hyperlinking is a value-add.
 - Prefer tables over lists (fall back to lists only when fields are non-uniform or values are too long to fit cleanly)
+
+**Done when:** results are deduplicated, gaps are closed by targeted follow-ups, and the output fits the opener plus the Result/Process/Patterns/Notes sections, or points to a written file when it can't fit one screen.
 
 ## Multi-Pass Queries
 
@@ -185,17 +191,13 @@ Between passes, compile and deduplicate before dispatching the next round.
 
 ## Evaluating Source Quality
 
-Source quality matters most for "best of", ranking, expert-finding, and best-practices queries, but is useful context for almost any research task.
+Source quality weighs most for "best of", ranking, expert-finding, and best-practices queries. Point subagents to `references/source-quality.md` — they tag quality, and you weight it at compile time.
 
-**At the subagent level:** Point subagents to `references/source-quality.md` so they tag source quality in their output. This lets you weight results during compilation.
-
-**At the orchestrator level**, when compiling subagent results:
-
-1. **Convergence across high-signal sources**: Convergence alone isn't meaningful (3 low-quality sources agreeing is just shared noise). What matters is when multiple independent, high-signal sources (practitioners, people with skin in the game) converge on the same finding.
-2. **Practitioner vs commentator**: Weight practitioners (people doing the work) higher than commentators (people writing about the work).
-3. **Via negativa**: Before synthesizing, define who to exclude (sources with misaligned incentives, no skin in the game, or unfalsifiable claims). Filtering out noise is more valuable than seeking brilliance.
-4. **Red-team your compiled results**: What perspectives are missing? What biases might be distorting the aggregate? If a gap emerges, run a targeted follow-up.
-5. **Ideas over entities**: For expert-finding and best-practices queries, the primary output is convergent truths, not a ranked list of names. Lead with what the best sources agree on, then cite who said it.
+At the orchestrator level, apply four rules when compiling:
+1. **High-signal convergence** — convergence means something only across independent practitioners; low-quality agreement is shared noise.
+2. **Via negativa** — define who to exclude before synthesizing; filtering noise beats chasing brilliance.
+3. **Red-team** — name the missing perspectives and biases in the aggregate, and run a targeted follow-up if a gap opens.
+4. **Ideas over entities** — for expert-finding and best-practices queries, lead with the convergent truths, then cite who said it.
 
 ## Gotchas
 
@@ -203,5 +205,4 @@ Source quality matters most for "best of", ranking, expert-finding, and best-pra
 - **Under-execution on hard queries**: If the query has 4+ constraints, temporal joins, or semantic filtering, a single search will not cut it. Fan out.
 - **Synonym queries**: Running "overrated AI tools" and "overhyped AI tools" as separate subagent queries wastes tokens. These hit the same embedding region. Diversify by angle instead.
 - **Forgetting to deduplicate**: Multiple subagents will return overlapping results. Always deduplicate before synthesis.
-- **Treating Exa results as validated**: Exa returns similarity, not yet validated. A result appearing in search output does not mean it meets the user's criteria. You must validate.
-- **Date drift**: Always calculate dates from the current environment date. Never reuse dates from these instructions or from previous queries.
+- **Unvalidated results**: a result in search output hasn't been validated against the user's criteria yet — validate before it lands in the report (see references/searching.md).
