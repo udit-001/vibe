@@ -62,6 +62,7 @@ $ErrorActionPreference = "Continue"
 $packages = @(
     "git:github.com/udit-001/pi-zen",
     "git:github.com/udit-001/pi-vision",
+    "git:github.com/udit-001/pi-powerline-footer",
     "npm:pi-mcp-adapter",
     "npm:pi-subagents"
 )
