@@ -1,7 +1,7 @@
 # Vibe Pi setup for Windows.
 # A short wizard: Pi core, Vibe packages, Playwright Agent CLI, Exa MCP, then an optional Zen API key.
 # Only asks for input when a human step is truly needed; skips everything else.
-# Safe to run more than once.
+# Idempotent — every step skips what's already done, so re-running is safe.
 
 $ErrorActionPreference = "Stop"
 $MinNode = [version]"22.19.0"
@@ -65,23 +65,36 @@ $packages = @(
     "npm:pi-mcp-adapter",
     "npm:pi-subagents"
 )
+$installed = @((((pi list) -join "`n") -split "`n") | ForEach-Object { $_.Trim() })
 foreach ($pkg in $packages) {
-    Write-Host ("  -> " + $pkg)
-    pi install $pkg
-    if ($LASTEXITCODE -ne 0) { Write-Host ("  !! failed: " + $pkg) }
+    if ($installed -contains $pkg) {
+        Write-Host ("  -> " + $pkg + " (already installed)")
+    } else {
+        Write-Host ("  -> " + $pkg)
+        pi install $pkg
+        if ($LASTEXITCODE -ne 0) { Write-Host ("  !! failed: " + $pkg) }
+    }
 }
 
 # Step 3 — Playwright Agent CLI + skills. Skills go to Pi's global skills
 # folder (~/.agents/skills), not Claude Code's — see the --skills=agents flag.
 Step "Install Playwright Agent CLI + skills"
 
-Write-Host "Installing @playwright/cli globally."
-npm install -g @playwright/cli
-if ($LASTEXITCODE -ne 0) {
-    Write-Host "  !! npm install -g @playwright/cli failed."
-} elseif (-not (Get-Command playwright-cli -ErrorAction SilentlyContinue)) {
+$pwSkillsPath = Join-Path $HOME ".agents\skills\playwright-cli"
+
+if (Get-Command playwright-cli -ErrorAction SilentlyContinue) {
+    Write-Host "Playwright CLI already installed. Skipped npm install."
+} else {
+    Write-Host "Installing @playwright/cli globally."
+    npm install -g @playwright/cli
+    if ($LASTEXITCODE -ne 0) { Write-Host "  !! npm install -g @playwright/cli failed." }
+}
+
+if (-not (Get-Command playwright-cli -ErrorAction SilentlyContinue)) {
     Write-Host "  !! playwright-cli is not on PATH in this window."
     Write-Host "     Open a new terminal and re-run the script."
+} elseif (Test-Path $pwSkillsPath) {
+    Write-Host "Playwright skills already installed. Skipped."
 } else {
     # --skills=agents targets the .agents/skills folder; --global makes it
     # user-global (~/.agents/skills), which Pi reads. The default (claude) is wrong here.
