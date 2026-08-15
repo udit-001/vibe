@@ -32,7 +32,7 @@ npx skills use udit-001/vibe -s ux-resilience      # use without installing
 
 Installs to `./<agent>/skills/` (add `-g` for global); symlinks by default (`--copy` for copies).
 
-**Included:** `image-fetcher` — fetch free-licensed photos (Openverse/NASA/Wikimedia, needs `uv`); `ux-clarity` — interface microcopy; `ux-onboarding` — first-run flows; `ux-resilience` — edge-case hardening.
+**Included:** `image-fetcher` — fetch free-licensed photos (Openverse/NASA/Wikimedia, needs `uv`); `docs-seeker` — find tech docs via llms.txt/context7, GitHub repo analysis (Repomix), parallel exploration; `ux-clarity` — interface microcopy; `ux-onboarding` — first-run flows; `ux-resilience` — edge-case hardening.
 
 ## Claude Code Plugins
 - Voice Mode: https://github.com/mbailey/voicemode
