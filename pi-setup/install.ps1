@@ -34,7 +34,12 @@ Write-Host "== Vibe Pi setup =="
 if (-not (Test-Pi) -or -not (Test-Node)) {
     Step "Install Pi (Node and Git if needed)"
     Write-Host "Running the official Pi installer. Answer its prompts."
-    $official = (Invoke-WebRequest -Uri $OfficialInstaller -UseBasicParsing).Content
+    $response = Invoke-WebRequest -Uri $OfficialInstaller -UseBasicParsing
+    $official = if ($response.Content -is [byte[]]) {
+        [System.Text.Encoding]::UTF8.GetString($response.Content)
+    } else {
+        [string]$response.Content
+    }
     Invoke-Expression $official
 } else {
     Step "Pi is already installed (skipped)"
@@ -44,7 +49,7 @@ if (-not (Test-Pi)) {
     Write-Host ""
     Write-Host "Pi installed, but not visible in this window."
     Write-Host "Open a new terminal and run again:"
-    Write-Host "  irm https://cdn.jsdelivr.net/gh/udit-001/vibe@main/pi-setup/install.ps1 | iex"
+    Write-Host "  curl.exe -sSL https://cdn.jsdelivr.net/gh/udit-001/vibe@main/pi-setup/install.ps1 | iex"
     exit 0
 }
 
