@@ -1,5 +1,5 @@
 # Vibe Pi setup for Windows.
-# A short wizard: Pi core, Vibe packages, then an optional Zen API key.
+# A short wizard: Pi core, Vibe packages, Exa MCP, then an optional Zen API key.
 # Only asks for input when a human step is truly needed; skips everything else.
 # Safe to run more than once.
 
@@ -7,12 +7,15 @@ $ErrorActionPreference = "Stop"
 $MinNode = [version]"22.19.0"
 $OfficialInstaller = "https://pi.dev/install.ps1"
 $ZenUrl = "https://opencode.ai/zen"
+$ExaUrl = "https://mcp.exa.ai/mcp?tools=web_search_exa,web_fetch_exa,web_search_advanced_exa"
+$TotalSteps = 4
+$agentDir = if ($env:PI_CODING_AGENT_DIR) { $env:PI_CODING_AGENT_DIR } else { Join-Path $HOME ".pi\agent" }
 $Step = 0
 
 function Step([string]$title) {
     $script:Step += 1
     Write-Host ""
-    Write-Host ("[" + $script:Step + "/3] " + $title)
+    Write-Host ("[" + $script:Step + "/" + $script:TotalSteps + "] " + $title)
 }
 
 function Test-Node {
@@ -68,10 +71,43 @@ foreach ($pkg in $packages) {
     if ($LASTEXITCODE -ne 0) { Write-Host ("  !! failed: " + $pkg) }
 }
 
-# Step 3 — Zen API key. Optional; press Enter to skip and do it later in pi.
+# Step 3 — Exa MCP. Same endpoint and tool selection as the opencode config.
+Step "Configure Exa MCP server"
+
+$mcpPath = Join-Path $agentDir "mcp.json"
+$mcpObj = $null
+if (Test-Path $mcpPath) {
+    try {
+        $raw = [System.IO.File]::ReadAllText($mcpPath)
+        if (-not [string]::IsNullOrWhiteSpace($raw)) {
+            $mcpObj = ($raw -replace "^\uFEFF", "") | ConvertFrom-Json
+        }
+    } catch {
+        Write-Host "  !! Could not read mcp.json; a fresh file will be written."
+        $mcpObj = $null
+    }
+}
+if (-not $mcpObj) { $mcpObj = New-Object PSObject }
+
+if (($mcpObj.PSObject.Properties.Name -contains "mcpServers") -and $null -ne $mcpObj.mcpServers -and ($mcpObj.mcpServers.PSObject.Properties.Name -contains "exa")) {
+    Write-Host "Exa MCP is already configured. Skipped."
+} else {
+    if (-not ($mcpObj.PSObject.Properties.Name -contains "mcpServers") -or $null -eq $mcpObj.mcpServers) {
+        $mcpObj | Add-Member -MemberType NoteProperty -Name "mcpServers" -Value (New-Object PSObject) -Force
+    }
+    $exa = New-Object PSObject
+    $exa | Add-Member -MemberType NoteProperty -Name "url" -Value $ExaUrl
+    $exa | Add-Member -MemberType NoteProperty -Name "directTools" -Value $true
+    $mcpObj.mcpServers | Add-Member -MemberType NoteProperty -Name "exa" -Value $exa -Force
+
+    New-Item -ItemType Directory -Force -Path $agentDir | Out-Null
+    [System.IO.File]::WriteAllText($mcpPath, ($mcpObj | ConvertTo-Json -Depth 10), (New-Object System.Text.UTF8Encoding $false))
+    Write-Host ("Configured Exa MCP in " + $mcpPath)
+}
+
+# Step 4 — Zen API key. Optional; press Enter to skip and do it later in pi.
 Step "Zen API key (optional)"
 
-$agentDir = if ($env:PI_CODING_AGENT_DIR) { $env:PI_CODING_AGENT_DIR } else { Join-Path $HOME ".pi\agent" }
 $authPath = Join-Path $agentDir "auth.json"
 $providerId = "pi-zen"
 
