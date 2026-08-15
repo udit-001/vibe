@@ -2,6 +2,23 @@
 
 A lightweight catalog of tools used with Claude Code, Pi, and opencode.
 
+## Install (Windows)
+
+One line. PowerShell:
+
+```powershell
+irm https://cdn.jsdelivr.net/gh/udit-001/vibe@main/pi-setup/install.ps1 | iex
+```
+
+Installs [Pi](https://github.com/earendil-works/pi-coding-agent) (Node and Git included if missing), then adds:
+
+- `pi-zen` — free OpenCode Zen models
+- `pi-vision` — vision for text-only models
+- `pi-mcp-adapter` — MCP support
+- `pi-subagents` — multi-agent workflows
+
+After install: run `pi`, then `/login pi-zen` (key at https://opencode.ai/zen) and `/model`.
+
 ## Skills
 
 Skills live in `skills/` (each folder has a `SKILL.md`). Install with the [skills CLI](https://skills.sh):
