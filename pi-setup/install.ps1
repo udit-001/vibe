@@ -1,5 +1,5 @@
 # Vibe Pi setup for Windows.
-# A short wizard: Pi core, Vibe packages, Playwright Agent CLI, Exa MCP, then an optional Zen API key.
+# A short wizard: Pi core, Vibe packages, Playwright Agent CLI, Exa MCP, an optional Zen API key, then Vibe skills.
 # Only asks for input when a human step is truly needed; skips everything else.
 # Idempotent — every step skips what's already done, so re-running is safe.
 
@@ -8,7 +8,7 @@ $MinNode = [version]"22.19.0"
 $OfficialInstaller = "https://pi.dev/install.ps1"
 $ZenUrl = "https://opencode.ai/zen"
 $ExaUrl = "https://mcp.exa.ai/mcp?tools=web_search_exa,web_fetch_exa,web_search_advanced_exa"
-$TotalSteps = 5
+$TotalSteps = 6
 $agentDir = if ($env:PI_CODING_AGENT_DIR) { $env:PI_CODING_AGENT_DIR } else { Join-Path $HOME ".pi\agent" }
 $Step = 0
 
@@ -201,6 +201,19 @@ if ($storedKey) {
             Write-Host "Saved key to auth.json."
         }
     }
+}
+
+# Step 6 — Vibe skills (global). Installed into the tool-agnostic ~/.agents/skills
+# folder that Pi reads. Repo skills: docs-seeker, search.
+Step "Install Vibe skills (global)"
+
+$skillsDir = Join-Path $HOME ".agents\skills"
+if ((Test-Path (Join-Path $skillsDir "docs-seeker")) -and (Test-Path (Join-Path $skillsDir "search"))) {
+    Write-Host "Vibe skills (docs-seeker, search) already installed. Skipped."
+} else {
+    # -g = user-global; -a universal = the .agents/skills folder; -y = non-interactive.
+    npx --yes skills add udit-001/vibe -s docs-seeker -s search -g -a universal -y
+    if ($LASTEXITCODE -ne 0) { Write-Host "  !! npx skills add failed." }
 }
 
 Write-Host ""
