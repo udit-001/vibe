@@ -1,5 +1,5 @@
 # Vibe Pi setup for Windows.
-# A short wizard: Pi core, Vibe packages, Exa MCP, then an optional Zen API key.
+# A short wizard: Pi core, Vibe packages, Playwright Agent CLI, Exa MCP, then an optional Zen API key.
 # Only asks for input when a human step is truly needed; skips everything else.
 # Safe to run more than once.
 
@@ -8,7 +8,7 @@ $MinNode = [version]"22.19.0"
 $OfficialInstaller = "https://pi.dev/install.ps1"
 $ZenUrl = "https://opencode.ai/zen"
 $ExaUrl = "https://mcp.exa.ai/mcp?tools=web_search_exa,web_fetch_exa,web_search_advanced_exa"
-$TotalSteps = 4
+$TotalSteps = 5
 $agentDir = if ($env:PI_CODING_AGENT_DIR) { $env:PI_CODING_AGENT_DIR } else { Join-Path $HOME ".pi\agent" }
 $Step = 0
 
@@ -71,7 +71,26 @@ foreach ($pkg in $packages) {
     if ($LASTEXITCODE -ne 0) { Write-Host ("  !! failed: " + $pkg) }
 }
 
-# Step 3 — Exa MCP. Same endpoint and tool selection as the opencode config.
+# Step 3 — Playwright Agent CLI + skills. Skills go to Pi's global skills
+# folder (~/.agents/skills), not Claude Code's — see the --skills=agents flag.
+Step "Install Playwright Agent CLI + skills"
+
+Write-Host "Installing @playwright/cli globally."
+npm install -g @playwright/cli
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "  !! npm install -g @playwright/cli failed."
+} elseif (-not (Get-Command playwright-cli -ErrorAction SilentlyContinue)) {
+    Write-Host "  !! playwright-cli is not on PATH in this window."
+    Write-Host "     Open a new terminal and re-run the script."
+} else {
+    # --skills=agents targets the .agents/skills folder; --global makes it
+    # user-global (~/.agents/skills), which Pi reads. The default (claude) is wrong here.
+    Write-Host "Installing Playwright skills to the global agents folder (Pi)."
+    playwright-cli install --skills=agents --global
+    if ($LASTEXITCODE -ne 0) { Write-Host "  !! playwright-cli install --skills=agents --global failed." }
+}
+
+# Step 4 — Exa MCP. Same endpoint and tool selection as the opencode config.
 Step "Configure Exa MCP server"
 
 $mcpPath = Join-Path $agentDir "mcp.json"
@@ -105,7 +124,7 @@ if (($mcpObj.PSObject.Properties.Name -contains "mcpServers") -and $null -ne $mc
     Write-Host ("Configured Exa MCP in " + $mcpPath)
 }
 
-# Step 4 — Zen API key. Optional; press Enter to skip and do it later in pi.
+# Step 5 — Zen API key. Optional; press Enter to skip and do it later in pi.
 Step "Zen API key (optional)"
 
 $authPath = Join-Path $agentDir "auth.json"
