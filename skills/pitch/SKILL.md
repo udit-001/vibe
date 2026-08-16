@@ -1,6 +1,6 @@
 ---
 name: pitch
-description: Write the document that sells a project to a skimmer — READMEs, repo descriptions, landing-page heroes, store listings, taglines. Use when the user wants a README rewritten, audited, or made non-technical; landing or store copy written; or AI-sounding writing scrubbed from project docs. Scope is the document a stranger reads before deciding to care: copy inside the product, page layout, and companion-doc accuracy (grounding docs/ trees against code) each belong to other skills.
+description: "Write the document that sells a project to a skimmer — READMEs, repo descriptions, landing-page heroes, store listings, taglines. Use when the user wants a README rewritten, audited, or made non-technical; landing or store copy written; or AI-sounding writing scrubbed from project docs. Scope is the document a stranger reads before deciding to care: copy inside the product, page layout, and companion-doc accuracy (grounding docs/ trees against code) each belong to other skills."
 ---
 
 # Pitch documents
