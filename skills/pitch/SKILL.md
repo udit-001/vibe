@@ -1,6 +1,6 @@
 ---
 name: pitch
-description: "Write the document that sells a project to a skimmer — READMEs, repo descriptions, landing-page heroes, store listings, taglines. Use when the user wants a README rewritten, audited, or made non-technical; landing or store copy written; or AI-sounding writing scrubbed from project docs. Scope is the document a stranger reads before deciding to care: copy inside the product, page layout, and companion-doc accuracy (grounding docs/ trees against code) each belong to other skills."
+description: "Write the document that sells a project to a skimmer — READMEs, repo descriptions, landing-page heroes, store listings, taglines. Use when the user wants a README rewritten, audited, or made non-technical; landing or store copy written; or AI-sounding writing scrubbed from project docs. Scope is the document a stranger reads before deciding to care; copy inside the product, page layout, and companion-doc accuracy each sit outside that."
 ---
 
 # Pitch documents
@@ -65,14 +65,15 @@ The section order follows the budgets — whatever the artifact's size:
 
 - **Five seconds:** title + pitch. The pitch carries the product — what it
   does, for whom, and the differentiator ("runs locally", "no cloud").
-  Mechanism ("server-rendered Go monolith", "MVVM") never leads.
+  Mechanism ("server-rendered Go monolith", "MVVM") stays out of the lead.
 - **Thirty seconds:** bold verbs + action path. Install before features —
   a skimmer who wants in should trip over the path in. Features as
   `- **Bold verb** — one line.` — the skimmer reads the verbs and gets the
   product; headed prose paragraphs are for companion docs.
 - Bullets say **what the reader gets**, not what the code has: "locks
   your screen when you walk away", not "BLE proximity daemon".
-- A **data/privacy** line whenever "local" is a real claim; skip it when it isn't.
+- A **data/privacy** line whenever "local" is a real claim; omit it
+  otherwise.
 - One **pointer line** to contributor docs if they exist; skip when starting
   from scratch — a fresh project's README is the honest dev setup, clearly
   labeled, not a manufactured installer.
