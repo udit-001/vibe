@@ -17,24 +17,30 @@ survives at each reading depth).
 
 ## 0. Scope the document
 
-Three questions settle everything. Look the answers up, don't ask:
+Three questions settle everything. They split into two kinds:
 
-- **Who's the reader, and what's the wanted action?** Derive it from the
-  product: a recipe app's reader taps an app-store link, a dev tool's
-  pastes a curl, a feed-scroller decides to click through. Contributor
-  content (build steps, architecture trees, make tables) moves behind one
-  pointer line.
-- **What's the real action path?** Verify the path exists before writing
-  it: check the release artifacts, the install script, the module path —
-  whatever the draft will point readers at. If the obvious path doesn't
-  hold up (no published artifacts, an install command that can't
-  resolve), document what's actually true and flag the gap to the user.
-- **Is the repo safe to work in?** If the working tree holds sensitive
-  files (anything identifying a real person — IDs, financial records,
-  keys) and the repo is public, check what's tracked and ignored before
-  touching anything, and report leaks.
+- **Facts** (the agent's job — look them up, never ask the user): What's the
+  product? What's the reader's real action path — is there a published
+  release, an install script, a resolvable module? Is the repo safe to work
+  in (sensitive files tracked in a public repo)? Derive the reader and the
+  wanted action from the product: a recipe app's reader taps an app-store
+  link, a dev tool's pastes a curl, a feed-scroller decides to click
+  through. Contributor content (build steps, architecture trees) moves
+  behind one pointer line. If the obvious action path doesn't hold up, flag
+  the gap — a pitch that promises an install the product can't deliver is a
+  worse bug than a blank install section.
+- **Decisions** (the user's job — put each, don't assume): Is this a polish
+  or a ground-up rewrite? Does the privacy/local-first claim go public?
+  Should the repo description change too, or just the README? When a
+  decision blocks downstream writing, surface it with a recommended answer
+  and wait one round — never silently pick for the user. A pitch whose
+  premises are still wide open ("help me figure out what this even is") is
+  a deliberation problem first: settle the model before writing the surface,
+  or the rewrite is warmed-over guessing.
 
-**Done when** reader, action, and safety are settled — one line each to the user.
+**Done when** every fact is looked up and every decision either settled by
+the user or recorded as an assumption the draft proceeds on. Premises wide
+open → stop and deliberate; don't write into the gap.
 
 ## 1. Ground the pitch's claims
 
