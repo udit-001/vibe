@@ -1,6 +1,6 @@
 ---
 name: pitch
-description: Write the document that sells a project to a skimmer — READMEs, repo descriptions, landing-page heroes, store listings, taglines. Use when the user wants a README rewritten, audited, condensed, or made non-technical; a GitHub repo description or topics updated; a landing page or store blurb's copy written; a tagline or one-liner crafted; AI-sounding writing scrubbed from project docs. Not for in-product microcopy (ux-clarity), full page design (impeccable), or contributor-doc accuracy work (grounding docs/ trees against code is its own task, not a pitch task).
+description: Write the document that sells a project to a skimmer — READMEs, repo descriptions, landing-page heroes, store listings, taglines. Use when the user wants a README rewritten, audited, or made non-technical; landing or store copy written; or AI-sounding writing scrubbed from project docs. Scope is the document a stranger reads before deciding to care: copy inside the product, page layout, and companion-doc accuracy (grounding docs/ trees against code) each belong to other skills.
 ---
 
 # Pitch documents
@@ -19,8 +19,8 @@ survives at each reading depth).
 
 Three questions settle everything. Look the answers up, don't ask:
 
-- **Who's the reader, and what's the wanted action?** Not "developers" by
-  default — a bulb-app reader installs an APK, a CLI reader pastes a curl,
+- **Who's the reader, and what's the wanted action?** Derive it from the
+  product: a bulb-app's reader installs an APK, a CLI's pastes a curl,
   a repo-card reader stars or scrolls past. Contributor content (build
   steps, architecture trees, make tables) moves behind one pointer line.
 - **What's the real action path?** Verify it exists before documenting it:
@@ -47,8 +47,7 @@ plausible:
 Grounding stops at the pitch document. If companion docs (AGENTS.md,
 docs/) have drifted — stale architecture trees, dead entries, wrong
 counts — that's separate accuracy work: report the drift to the user and
-let them commission it, or hand it to a docs task. Don't let it expand
-this skill's scope.
+let them commission it, or hand it to a docs task.
 
 **Done when** every claim the pitch makes is checked against the code and
 infrastructure. Drifted companion docs are reported, not repaired here.
@@ -89,18 +88,23 @@ actual enumeration, not a synonym swap.
 **Done when** the draft passes the checklist with each tell removed or
 justified aloud (a triple that is the literal product scope may stay).
 
-## 4. Repo metadata (GitHub branch)
+## GitHub repo metadata (reference)
 
-The repo description is the **zero-second** budget — what shows on cards and
-search. Same pitch discipline, ~100 chars: lead with what it does ("Track
-every job application, let your AI write the paperwork"), not category nouns
-("AI Guided Learning Workspace"); differentiator hook in the second sentence
-("Runs locally, no account"); no repeated words, no jargon, no truncation.
+A README rewrite on GitHub usually pulls its metadata along — the user
+benefit rides along with the core work. Reach for this when the rewrite
+touched a GitHub-hosted repo:
 
-Topics via `gh repo edit --add-topic`: product words for discovery (the job,
-the domain, the integrations), stack words for hackers (`golang`, `sqlite`),
-`local-first`/`self-hosted` when the privacy story is real. Check what exists
-first with `gh repo view --json repositoryTopics`.
+The repo description is the **zero-second** budget — what shows on cards
+and search. Same pitch discipline, ~100 chars: lead with what it does
+("Track every job application, let your AI write the paperwork"), not
+category nouns ("AI Guided Learning Workspace"); differentiator hook in
+the second sentence ("Runs locally, no account"); no repeated words, no
+jargon, no truncation at 100 chars.
 
-**Done when** description and topics are set (or verified already current)
-and both match the README's pitch.
+Topics via `gh repo edit --add-topic`: product words for discovery (the
+job, the domain, the integrations), stack words for hackers (`golang`,
+`sqlite`), `local-first`/`self-hosted` when the privacy story is real.
+Check what exists first with `gh repo view --json repositoryTopics`.
+
+Offer the update; apply it when the user accepts. Both must match the
+pitch the README now makes.

@@ -1,4 +1,4 @@
-# AI tells — the checklist for step 3
+# AI tells — the scrub checklist
 
 Signs that a pitch sounds machine-written, each with the fix. The reference
 is the Wikipedia "Signs of AI writing" field guide; the list below is its
