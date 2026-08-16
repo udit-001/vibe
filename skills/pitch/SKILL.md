@@ -1,6 +1,6 @@
 ---
 name: pitch
-description: Write the document that sells a project to a skimmer — READMEs, repo descriptions, landing-page heroes, store listings, taglines. Use when the user wants a README rewritten, audited, condensed, or made non-technical; a GitHub repo description or topics updated; a landing page or store blurb's copy written; a tagline or one-liner crafted; AI-sounding writing scrubbed from project docs. Not for in-product microcopy (ux-clarity) or full page design (impeccable).
+description: Write the document that sells a project to a skimmer — READMEs, repo descriptions, landing-page heroes, store listings, taglines. Use when the user wants a README rewritten, audited, condensed, or made non-technical; a GitHub repo description or topics updated; a landing page or store blurb's copy written; a tagline or one-liner crafted; AI-sounding writing scrubbed from project docs. Not for in-product microcopy (ux-clarity), full page design (impeccable), or contributor-doc accuracy work (grounding docs/ trees against code is its own task, not a pitch task).
 ---
 
 # Pitch documents
@@ -11,9 +11,9 @@ hero, the store blurb are all the same object at different sizes. The skill
 is writing to those **skim budgets** so each one lands.
 
 Leading words: the **skimmer** (who you're writing for), the **pitch** (the
-one-line why that survives the skim), **grounded** (every claim verified
-against the product before it ships), and the **budgets** (what survives at
-each reading depth).
+one-line why that survives the skim), **grounded** (the pitch's claims
+verified against the product before they ship), and the **budgets** (what
+survives at each reading depth).
 
 ## 0. Scope the document
 
@@ -33,22 +33,25 @@ Three questions settle everything. Look the answers up, don't ask:
 
 **Done when** reader, action, and safety are settled — one line each to the user.
 
-## 1. Ground the facts
+## 1. Ground the pitch's claims
 
-Every claim in the new document must be **grounded** in the product. This is
-what makes the rewrite durable instead of plausible:
+The pitch's own claims must be **grounded** — verified against the product
+before the copy ships. This is what makes the rewrite durable instead of
+plausible:
 
 - Feature bullets ↔ actual commands, flags, routes, views (`ls internal/`,
   `grep` the flags, read the skill files)
-- Action path ↔ artifacts that exist (`gh release view`, module path)
-- Any architecture tree in companion docs ↔ `ls` of the real directories —
-  trees drift silently (dead classes, renamed files, wrong counts)
+- Action path ↔ artifacts that exist (`gh release view`, module path,
+  `install.sh`)
 
-Drift found in companion docs (AGENTS.md, docs/) while grounding? Fix it in
-the same pass and say so in the commit.
+Grounding stops at the pitch document. If companion docs (AGENTS.md,
+docs/) have drifted — stale architecture trees, dead entries, wrong
+counts — that's separate accuracy work: report the drift to the user and
+let them commission it, or hand it to a docs task. Don't let it expand
+this skill's scope.
 
-**Done when** every claim is checked against the code and infrastructure,
-and drifted companion docs are corrected.
+**Done when** every claim the pitch makes is checked against the code and
+infrastructure. Drifted companion docs are reported, not repaired here.
 
 ## 2. Write to the budgets
 
