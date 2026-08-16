@@ -20,16 +20,19 @@ survives at each reading depth).
 Three questions settle everything. Look the answers up, don't ask:
 
 - **Who's the reader, and what's the wanted action?** Derive it from the
-  product: a bulb-app's reader installs an APK, a CLI's pastes a curl,
-  a repo-card reader stars or scrolls past. Contributor content (build
-  steps, architecture trees, make tables) moves behind one pointer line.
-- **What's the real action path?** Verify it exists before documenting it:
-  `gh release view` for artifacts, `install.sh` for the script, `go.mod`
-  for the module path. No releases and an unqualified module means
-  `go install` can't work — document what's true and flag the gap.
-- **Is the repo safe to work in?** If the working tree holds personal files
-  (payslips, credentials, PAN-named archives) and the repo is public, check
-  `git ls-files` and `.gitignore` first and report leaks.
+  product: a recipe app's reader taps an app-store link, a dev tool's
+  pastes a curl, a feed-scroller decides to click through. Contributor
+  content (build steps, architecture trees, make tables) moves behind one
+  pointer line.
+- **What's the real action path?** Verify the path exists before writing
+  it: check the release artifacts, the install script, the module path —
+  whatever the draft will point readers at. If the obvious path doesn't
+  hold up (no published artifacts, an install command that can't
+  resolve), document what's actually true and flag the gap to the user.
+- **Is the repo safe to work in?** If the working tree holds sensitive
+  files (anything identifying a real person — IDs, financial records,
+  keys) and the repo is public, check what's tracked and ignored before
+  touching anything, and report leaks.
 
 **Done when** reader, action, and safety are settled — one line each to the user.
 
@@ -37,20 +40,17 @@ Three questions settle everything. Look the answers up, don't ask:
 
 The pitch's own claims must be **grounded** — verified against the product
 before the copy ships. This is what makes the rewrite durable instead of
-plausible:
-
-- Feature bullets ↔ actual commands, flags, routes, views (`ls internal/`,
-  `grep` the flags, read the skill files)
-- Action path ↔ artifacts that exist (`gh release view`, module path,
-  `install.sh`)
+plausible: walk each feature bullet to the thing that implements it — the
+command, the route, the screen — and each action path to the artifact it
+depends on.
 
 Grounding stops at the pitch document. If companion docs (AGENTS.md,
 docs/) have drifted — stale architecture trees, dead entries, wrong
 counts — that's separate accuracy work: report the drift to the user and
 let them commission it, or hand it to a docs task.
 
-**Done when** every claim the pitch makes is checked against the code and
-infrastructure. Drifted companion docs are reported, not repaired here.
+**Done when** every claim the pitch makes is checked against the product.
+Drifted companion docs are reported, not repaired here.
 
 ## 2. Write to the budgets
 
@@ -63,9 +63,8 @@ The section order follows the budgets — whatever the artifact's size:
   a skimmer who wants in should trip over the path in. Features as
   `- **Bold verb** — one line.` — the skimmer reads the verbs and gets the
   product; headed prose paragraphs are for companion docs.
-- Bullets say **what the reader gets**, not what the code has: "strips your
-  phone number and email before the resume reaches an AI", not
-  "deterministic redaction module".
+- Bullets say **what the reader gets**, not what the code has: "locks
+  your screen when you walk away", not "BLE proximity daemon".
 - A **data/privacy** line whenever "local" is a real claim; skip it when it isn't.
 - One **pointer line** to contributor docs if they exist; skip when starting
   from scratch — a fresh project's README is the honest dev setup, clearly
@@ -96,15 +95,15 @@ touched a GitHub-hosted repo:
 
 The repo description is the **zero-second** budget — what shows on cards
 and search. Same pitch discipline, ~100 chars: lead with what it does
-("Track every job application, let your AI write the paperwork"), not
-category nouns ("AI Guided Learning Workspace"); differentiator hook in
+("A garden planner that knows your local frost dates"), not
+category nouns ("AI-Powered Gardening Workspace"); differentiator hook in
 the second sentence ("Runs locally, no account"); no repeated words, no
 jargon, no truncation at 100 chars.
 
-Topics via `gh repo edit --add-topic`: product words for discovery (the
-job, the domain, the integrations), stack words for hackers (`golang`,
-`sqlite`), `local-first`/`self-hosted` when the privacy story is real.
-Check what exists first with `gh repo view --json repositoryTopics`.
+Topics: product words for discovery (the job, the domain, the
+integrations), stack words for the audience you want (the language, the
+storage engine), and privacy terms when the privacy story is real. Check
+what exists first — both must match the pitch the README now makes.
 
 Offer the update; apply it when the user accepts. Both must match the
 pitch the README now makes.

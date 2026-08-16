@@ -31,17 +31,17 @@ specific fact the generic phrase smoothed over.
 
 4. **Smoothed generics** — "and more" · "and much more" · "various tools" ·
    "at a glance". A gesture at specificity without delivering it. Fix:
-   enumerate the real list ("six built-in skills: emails, cover letters,
-   interview prep, career summaries, resume keyword checks, grad-school
-   statements"). The count should be the true count.
+   enumerate the real list ("four export formats: CSV, JSON, PDF,
+   and a calendar file you can subscribe to"). The count should be the
+   true count.
 
 5. **Promotional register** — "vibrant", "seamless", "powerful",
    "effortless", "boasts", "rich", "beautifully". Travel-brochure tone.
    Fix: state the capability plainly and let the reader be impressed.
 
-6. **Rhetorical questions as section openers** — "Sharing your resume with
-   an AI?" Fix: declarative ("When you hand your resume to an AI, Waypoint
-   can strip your phone number and email first.").
+6. **Rhetorical questions as section openers** — "Want to ship faster?"
+   Fix: declarative ("When you save a file, this tool redeploys in under
+   a second.").
 
 7. **Em-dash spray** — more than one or two per section reads as machine
    rhythm. Fix: periods, parentheses, or commas; keep the em-dash for the
