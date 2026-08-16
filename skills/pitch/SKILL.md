@@ -19,28 +19,29 @@ survives at each reading depth).
 
 Three questions settle everything. They split into two kinds:
 
-- **Facts** (the agent's job — look them up, never ask the user): What's the
-  product? What's the reader's real action path — is there a published
+- **Facts** — the agent's job. Look them up, then report them. What's
+  the product? What's the reader's real action path — is there a published
   release, an install script, a resolvable module? Is the repo safe to work
   in (sensitive files tracked in a public repo)? Derive the reader and the
-  wanted action from the product: a recipe app's reader taps an app-store
-  link, a dev tool's pastes a curl, a feed-scroller decides to click
-  through. Contributor content (build steps, architecture trees) moves
-  behind one pointer line. If the obvious action path doesn't hold up, flag
-  the gap — a pitch that promises an install the product can't deliver is a
-  worse bug than a blank install section.
-- **Decisions** (the user's job — put each, don't assume): Is this a polish
-  or a ground-up rewrite? Does the privacy/local-first claim go public?
-  Should the repo description change too, or just the README? When a
-  decision blocks downstream writing, surface it with a recommended answer
-  and wait one round — never silently pick for the user. A pitch whose
-  premises are still wide open ("help me figure out what this even is") is
-  a deliberation problem first: settle the model before writing the surface,
-  or the rewrite is warmed-over guessing.
+  wanted action from the product itself: a recipe app's reader taps an
+  app-store link, a dev tool's pastes a curl, a feed-scroller decides to
+  click through. Contributor content (build steps, architecture trees)
+  moves behind one pointer line. If the obvious action path doesn't hold
+  up, flag the gap — a pitch that promises an install the product can't
+  deliver is a worse bug than a blank install section.
+- **Decisions** — the user's job. Put each with your recommended answer.
+  Is this a polish or a ground-up rewrite? Does the privacy / local-first
+  claim go public? Should the repo description change too, or just the
+  README? When a decision blocks downstream writing, surface it and wait
+  one round.
+
+Order them as the writing does: the audience decision blocks the action
+path, the action path blocks the install section, the install section
+blocks the skim-budget split. Settle an upstream premise before writing
+into it.
 
 **Done when** every fact is looked up and every decision either settled by
-the user or recorded as an assumption the draft proceeds on. Premises wide
-open → stop and deliberate; don't write into the gap.
+the user or recorded as an assumption the draft proceeds on.
 
 ## 1. Ground the pitch's claims
 
@@ -52,8 +53,8 @@ depends on.
 
 Grounding stops at the pitch document. If companion docs (AGENTS.md,
 docs/) have drifted — stale architecture trees, dead entries, wrong
-counts — that's separate accuracy work: report the drift to the user and
-let them commission it, or hand it to a docs task.
+counts — that's separate accuracy work: report the drift and let the
+user decide whether to commission it.
 
 **Done when** every claim the pitch makes is checked against the product.
 Drifted companion docs are reported, not repaired here.
