@@ -1,0 +1,11 @@
+{
+  "name": "focus-output-style",
+  "displayName": "Focus Output Style",
+  "version": "0.1.0",
+  "description": "Low-cognitive-load output style for Claude Code — answer first, one decision at a time, cheap to verify, no filler.",
+  "author": { "name": "Udit", "url": "https://github.com/udit-001" },
+  "repository": "https://github.com/udit-001/vibe",
+  "license": "MIT",
+  "keywords": ["output-style", "focus", "concise"],
+  "outputStyles": "./output-styles/"
+}

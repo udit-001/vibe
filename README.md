@@ -35,6 +35,28 @@ Installs to `./<agent>/skills/` (add `-g` for global); symlinks by default (`--c
 **Included:** `image-fetcher` — fetch free-licensed photos (Openverse/NASA/Wikimedia, needs `uv`); `docs-seeker` — find tech docs via llms.txt/context7, GitHub repo analysis (Repomix), parallel exploration; `search` — deep research with Exa (lead gen, literature reviews, competitive analysis); `ux-clarity` — interface microcopy; `ux-onboarding` — first-run flows; `ux-resilience` — edge-case hardening.
 
 ## Claude Code Plugins
+
+### From this repo
+
+This repo doubles as a Claude Code plugin marketplace. It ships the **Focus** output style — answer first, one decision at a time, cheap to verify, no filler:
+
+```bash
+/plugin marketplace add udit-001/vibe
+/plugin install focus-output-style@vibe
+```
+
+Or non-interactively:
+
+```bash
+claude plugin marketplace add udit-001/vibe
+claude plugin install focus-output-style@vibe
+```
+
+The style ships with `force-for-plugin: true`, so installing the plugin applies **Focus** to every session automatically (verified with `claude plugin validate`). To make it opt-in instead, remove `force-for-plugin: true` from `plugins/focus-output-style/output-styles/focus.md` and pick it via `/config` → Output style. Uninstall with `/plugin uninstall focus-output-style@vibe`.
+
+The canonical Focus text lives in the separate `output-style` project (`styles/Focus.md`); this copy is what the plugin ships.
+
+### External
 - Voice Mode: https://github.com/mbailey/voicemode
 - Vibe Log CLI: https://github.com/vibe-log/vibe-log-cli
 - Handy Computer: https://handy.computer

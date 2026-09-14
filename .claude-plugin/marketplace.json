@@ -1,0 +1,23 @@
+{
+  "name": "vibe",
+  "owner": {
+    "name": "Udit",
+    "email": "23015406+udit-001@users.noreply.github.com"
+  },
+  "metadata": {
+    "description": "Output styles, skills, and tools from the vibe toolkit",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "focus-output-style",
+      "source": "./plugins/focus-output-style",
+      "description": "Focus: low-cognitive-load output style for Claude Code — answer first, one decision at a time, cheap to verify, no filler.",
+      "version": "0.1.0",
+      "author": { "name": "Udit", "url": "https://github.com/udit-001" },
+      "category": "productivity",
+      "keywords": ["output-style", "focus", "concise", "attention"],
+      "tags": ["output-style", "productivity"]
+    }
+  ]
+}
