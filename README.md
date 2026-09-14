@@ -36,8 +36,6 @@ Installs to `./<agent>/skills/` (add `-g` for global); symlinks by default (`--c
 
 ## Claude Code Plugins
 
-### From this repo
-
 This repo doubles as a Claude Code plugin marketplace. It ships the **Focus** output style — answer first, one decision at a time, cheap to verify, no filler:
 
 ```bash
@@ -56,18 +54,7 @@ The style ships with `force-for-plugin: true`, so installing the plugin applies 
 
 The canonical Focus text lives in the separate `output-style` project (`styles/Focus.md`); this copy is what the plugin ships.
 
-### External
-- Voice Mode: https://github.com/mbailey/voicemode
-- Vibe Log CLI: https://github.com/vibe-log/vibe-log-cli
-- Handy Computer: https://handy.computer
-- Basic Memory: https://github.com/basicmachines-co/basic-memory
-- Episodic Memory: https://github.com/obra/episodic-memory
-- Claude Code Viewer: https://github.com/d-kimuson/claude-code-viewer
-- Recall: https://github.com/zippoxer/recall
-
 ## Pi Extensions
-
-### Project
 - Answer: pi-extensions/answer
 - Usage Status: pi-extensions/usage-status
 - Powerline Footer: pi-extensions/powerline-footer
@@ -85,29 +72,6 @@ The canonical Focus text lives in the separate `output-style` project (`styles/F
 
 **Print mode:** `PI_PERMISSION_LEVEL=medium pi -p "..."`
 
-### Global
-- [pi-interactive-shell](https://github.com/nicobailon/pi-interactive-shell)
-- [pi-mcp-adapter](https://github.com/nicobailon/pi-mcp-adapter)
-- [pi-rewind-hook](https://github.com/nicobailon/pi-rewind-hook)
-- [@tmustier/pi-tab-status](https://github.com/tmustier/pi-extensions/tree/main/tab-status)
-- [@tmustier/pi-usage-extension](https://github.com/tmustier/pi-extensions/tree/main/usage-extension)
-- [pi-powerline-footer](https://github.com/nicobailon/pi-powerline-footer)
-- [threads](https://github.com/laulauland/dotfiles/tree/main/shared/.pi/agent/extensions/threads)
+## Reference
 
-## MCP Servers
-- Exa MCP: https://docs.exa.ai/reference/exa-mcp
-- Deepwiki MCP: https://docs.devin.ai/work-with-devin/deepwiki-mcp?utm_source=ai-bot.cn
-- Grep MCP: https://vercel.com/blog/grep-a-million-github-repositories-via-mcp
-- LLMs.txt MCP: https://github.com/langchain-ai/mcpdoc
-- FastMCP MCP: https://gofastmcp.com/getting-started/welcome#mcp-server
-
-## Status Lines
-- CCometixLine: https://github.com/Haleclipse/CCometixLine
-
-## Skills
-- Tufte Chart Skills: https://github.com/aref-vc/tufte-claude-skill
-
-## LLMs.txt References
-- Langgraph: https://langchain-ai.github.io/langgraph/llms.txt
-- Pydantic AI: https://ai.pydantic.dev/llms.txt
-- FastMCP: https://gofastmcp.com/getting-started/welcome#text-formats
+The MCP servers, status lines, and other external tools I use are cataloged in [REFERENCE.md](REFERENCE.md).
