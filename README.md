@@ -52,7 +52,7 @@ claude plugin marketplace add udit-001/vibe
 claude plugin install focus-output-style@vibe
 ```
 
-The style ships with `force-for-plugin: true`, so installing the plugin applies **Focus** to every session automatically (verified with `claude plugin validate`). To make it opt-in instead, remove `force-for-plugin: true` from `plugins/focus-output-style/output-styles/focus.md` and pick it via `/config` → Output style. Uninstall with `/plugin uninstall focus-output-style@vibe`.
+The style ships with `force-for-plugin: true`, so installing the plugin applies **Focus** to every session automatically (verified with `claude plugin validate`). To make it opt-in instead, remove `force-for-plugin: true` from `claude-plugins/focus-output-style/output-styles/focus.md` and pick it via `/config` → Output style. Uninstall with `/plugin uninstall focus-output-style@vibe`.
 
 The canonical Focus text lives in the separate `output-style` project (`styles/Focus.md`); this copy is what the plugin ships.
 

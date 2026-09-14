@@ -11,7 +11,7 @@
   "plugins": [
     {
       "name": "focus-output-style",
-      "source": "./plugins/focus-output-style",
+      "source": "./claude-plugins/focus-output-style",
       "description": "Focus: low-cognitive-load output style for Claude Code — answer first, one decision at a time, cheap to verify, no filler.",
       "version": "0.1.0",
       "author": { "name": "Udit", "url": "https://github.com/udit-001" },
