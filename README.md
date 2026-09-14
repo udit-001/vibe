@@ -19,7 +19,7 @@ Skills are folders with a `SKILL.md`, installed from any agent (Claude Code, Pi,
 ```bash
 npx skills add udit-001/vibe                       # interactive
 npx skills add udit-001/vibe --all                 # all skills, all agents
-npx skills add udit-001/vibe -s image-fetcher -a claude-code -a pi -a opencode  # specific
+npx skills add udit-001/vibe -s image-fetcher -a claude-code -a pi  # specific
 npx skills use udit-001/vibe -s ux-resilience      # use without installing
 ```
 
@@ -53,10 +53,6 @@ The canonical Focus text lives in the separate `output-style` project (`styles/F
 Extensions for [Pi](https://github.com/earendil-works/pi-coding-agent) live in `pi-extensions/`. Copy or symlink any of them into `.pi/extensions/` (project) or `~/.pi/agent/extensions/` (global), then `/reload`.
 
 The full table (10 extensions, permission commands, print mode): [docs/pi-extensions.md](docs/pi-extensions.md).
-
-## opencode
-
-The skills above work in opencode too: pass `-a opencode` when installing (see the example in Skills).
 
 ## Pi setup (Windows)
 
