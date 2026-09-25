@@ -56,7 +56,22 @@ Reach for a live system only when the user owns it and asks you to. Never target
 
 ### 1. Map the surface
 
-Read the entry points, the auth/session layer, the data stores, and the privileged operations. Note the languages, frameworks, and target type (web, native/binary, LLM-backed, mobile/desktop, infra, library/CLI) — that selects which checklists in [DOMAINS.md](DOMAINS.md) apply.
+Read the entry points, the auth/session layer, the data stores, and the privileged operations. Note the target type, then open only the checklists that fit it:
+
+| Target | Checklist |
+|---|---|
+| Web app, API, proxy, CDN, sessions, JWT, OAuth/OIDC, SAML, MFA, passkeys, API keys, mTLS | [WEB-AND-IDENTITY.md](WEB-AND-IDENTITY.md) |
+| SPA, browser extension, webview, service worker, DOM, cross-window messaging | [CLIENT-SIDE.md](CLIENT-SIDE.md) |
+| Chatbot, RAG, agent memory, tool-calling agent, MCP server or client | [AI-AND-LLM.md](AI-AND-LLM.md) |
+| C/C++, Rust `unsafe`, kernel module, parser, decoder, FFI, binary loader, JIT | [NATIVE-AND-BINARY.md](NATIVE-AND-BINARY.md) |
+| Dependency resolution, codegen, CI, release signing, updater, plugins | [SUPPLY-CHAIN-AND-RELEASE.md](SUPPLY-CHAIN-AND-RELEASE.md) |
+| IAM, infrastructure as code, containers, service mesh, serverless/edge, ingress | [CLOUD-AND-DEPLOYMENT.md](CLOUD-AND-DEPLOYMENT.md) |
+| gRPC, GraphQL, Protobuf, Thrift, custom protocol, queue, broker, pub/sub, webhook | [PROTOCOLS-AND-MESSAGING.md](PROTOCOLS-AND-MESSAGING.md) |
+| Multi-tenant store, search, cache, export, backup, migration, deletion, restore | [DATA-ISOLATION-AND-LIFECYCLE.md](DATA-ISOLATION-AND-LIFECYCLE.md) |
+| Native app, deep link, webview bridge, privileged helper, local daemon, IPC | [DESKTOP-MOBILE-AND-IPC.md](DESKTOP-MOBILE-AND-IPC.md) |
+| Untrusted work consuming shared CPU, memory, disk, connections, quota, or spend | [RESOURCE-EXHAUSTION.md](RESOURCE-EXHAUSTION.md) |
+
+Library and CLI targets usually need only [ATTACK-CLASSES.md](ATTACK-CLASSES.md) itself.
 
 Also run the **obvious things** pass in [ATTACK-CLASSES.md](ATTACK-CLASSES.md): hardcoded secrets, ungated debug endpoints, checked-in `.env`/key files, `eval`/`exec` on dynamic input, permissive CORS, cookies missing `HttpOnly`/`Secure`/`SameSite`, open redirects, stack traces in production errors. Cheap, and it catches what everyone assumes someone else checked.
 
@@ -64,7 +79,7 @@ Also run the **obvious things** pass in [ATTACK-CLASSES.md](ATTACK-CLASSES.md): 
 
 ### 2. Hunt by class
 
-Work the core classes in [ATTACK-CLASSES.md](ATTACK-CLASSES.md) — injection, access control, resource and file handling, crypto and secrets, business logic, feature abuse, chained trust — plus the per-target checklists in [DOMAINS.md](DOMAINS.md) that fit this codebase.
+Work the core classes in [ATTACK-CLASSES.md](ATTACK-CLASSES.md) — injection, access control, resource and file handling, crypto and secrets, business logic, feature abuse, chained trust — plus every checklist the table above selected.
 
 For each class, trace forward from a real untrusted entry to a sink, and chase the awkward cases: data validated on the way in and used dangerously on the way out; field names and headers as well as values; the same resource reachable by two paths with different checks; a permission check that exists but guards the wrong permission; bulk and export operations that skip per-item checks.
 
