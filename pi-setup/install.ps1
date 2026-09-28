@@ -30,6 +30,34 @@ function Test-Pi {
     return [bool](Get-Command pi -ErrorAction SilentlyContinue)
 }
 
+# Opens a URL in the default browser. Start-Process alone is not reliable:
+# it throws on hosts with no program association for https, on non-interactive
+# sessions, and when the script is piped in via 'irm | iex'. Try it, then two
+# hand-rolled fallbacks, and always print the URL so a manual copy still works.
+# Returns $true only when a launch is known to have happened, so the caller can
+# show the manual-copy hint. No fallback is trusted on its exit code: rundll32
+# exits 0 even when no handler runs.
+function Open-Page([string]$url) {
+    Write-Host ("  -> " + $url)
+
+    try {
+        Start-Process $url -ErrorAction Stop
+        return $true
+    } catch {
+        Write-Host ("     Start-Process failed: " + $_.Exception.Message)
+    }
+
+    foreach ($launcher in @(
+        { & rundll32.exe url.dll,FileProtocolHandler $url },
+        { & cmd.exe /c start "" $url }
+    )) {
+        try { & $launcher 2>$null } catch { }
+        Start-Sleep -Milliseconds 400
+    }
+
+    return $false
+}
+
 Write-Host ""
 Write-Host "== Vibe Pi setup =="
 
@@ -162,7 +190,13 @@ if ($storedKey) {
     Write-Host "  1. Sign in"
     Write-Host "  2. Add billing (free models still ask for a card on file)"
     Write-Host "  3. Copy your 'oc_...' key"
-    Start-Process $ZenUrl
+    if (-not (Open-Page $ZenUrl)) {
+        Write-Host ""
+        Write-Host "  !! The browser did not open automatically."
+        Write-Host "     If nothing came up, copy this link into your browser:"
+        Write-Host ("     " + $ZenUrl)
+        Write-Host "     (Key is optional — press Enter to skip and use /login later.)"
+    }
 
     $secure = Read-Host "Paste key now, or press Enter to skip (run /login pi-zen later)" -AsSecureString
     $key = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($secure))
