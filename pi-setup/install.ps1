@@ -252,5 +252,18 @@ if ((Test-Path (Join-Path $skillsDir "docs-seeker")) -and (Test-Path (Join-Path 
 }
 
 Write-Host ""
-Write-Host "Done. Next: run 'pi', then /model to pick a pi-zen model."
+Write-Host "Done. 3 things to do in this order:"
+Write-Host "  1. Run 'pi'"
+Write-Host "  2. /model   -- pick a pi-zen model"
+Write-Host "  3. /hotkeys -- your active shortcuts"
+Write-Host ""
+Write-Host "Windows shortcuts differ from macOS/Linux (queue a message is ctrl+q,"
+Write-Host "not alt+enter). /hotkeys always shows the current ones for this"
+Write-Host "pi version -- read it there rather than trusting any list, including"
+Write-Host "this one."
+Write-Host ""
+Write-Host "To change one: " + (Join-Path $agentDir "keybindings.json")
+Write-Host "  { ""app.message.followUp"": [""ctrl+q"", ""alt+enter""] }"
+Write-Host "  Then /reload in pi. A single value REPLACES the default for that"
+Write-Host "  action, so keep every key you want in a list."
 Write-Host ""
