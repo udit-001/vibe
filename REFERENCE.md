@@ -24,7 +24,6 @@ Tools and references I use with Claude Code, Pi, and opencode. The README covers
 
 ### Capture & workflow
 - **pi-interactive-shell**: run interactive CLIs (TUIs, auth flows) in overlays (https://github.com/nicobailon/pi-interactive-shell)
-- **threads**: conversation threads for pi (https://github.com/laulauland/dotfiles/tree/main/shared/.pi/agent/extensions/threads)
 
 ### MCP
 - **pi-mcp-adapter**: MCP server adapter for pi (https://github.com/nicobailon/pi-mcp-adapter)
