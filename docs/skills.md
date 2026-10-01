@@ -1,6 +1,6 @@
 # Skills
 
-All 11 skills in `skills/`, installed per agent via the [skills CLI](https://skills.sh). See the README for the install commands.
+All 12 skills in `skills/`, installed per agent via the [skills CLI](https://skills.sh). See the README for the install commands.
 
 | Skill | What it does |
 |---|---|
@@ -14,4 +14,5 @@ All 11 skills in `skills/`, installed per agent via the [skills CLI](https://ski
 | [ux-clarity](../skills/ux-clarity) | Interface microcopy: labels, buttons, helper text, error and empty states |
 | [ux-onboarding](../skills/ux-onboarding) | First-run onboarding, activation, and guided setup flows |
 | [ux-resilience](../skills/ux-resilience) | Edge-case hardening: error states, i18n, text overflow, accessibility |
+| [vscode](../skills/vscode) | Opens diffs and file comparisons in VS Code |
 | [watch-video](../skills/watch-video) | Turns a video into a timestamped watch pack (transcript + frames) |
