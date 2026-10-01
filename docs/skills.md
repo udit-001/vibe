@@ -1,9 +1,10 @@
 # Skills
 
-All 10 skills in `skills/`, installed per agent via the [skills CLI](https://skills.sh). See the README for the install commands.
+All 11 skills in `skills/`, installed per agent via the [skills CLI](https://skills.sh). See the README for the install commands.
 
 | Skill | What it does |
 |---|---|
+| [antislop](../skills/antislop) | Filters AI-generated UI, copy, and code-comment slop: purpose test, mandatory rules, Delivery Gate |
 | [docs-seeker](../skills/docs-seeker) | Finds tech docs via llms.txt/context7, GitHub repo analysis (Repomix), parallel exploration |
 | [i-have-adhd](../skills/i-have-adhd) | Shapes responses for a reader with ADHD: action-first, numbered steps, no preamble or closers |
 | [image-fetcher](../skills/image-fetcher) | Fetches a free-licensed image and drops it into the project (Openverse/NASA/Wikimedia, needs `uv`) |

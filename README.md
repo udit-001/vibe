@@ -6,7 +6,7 @@ One repo for the toolkit I run across three agents.
 
 | Path | What it is |
 |---|---|
-| `skills/` | 10 skills for any agent, installed via the [skills CLI](https://skills.sh) |
+| `skills/` | 11 skills for any agent, installed via the [skills CLI](https://skills.sh) |
 | `claude-plugins/` | Claude Code plugin marketplace, shipping the **Focus** output style |
 | `pi-extensions/` | Pi extension sources |
 | `pi-setup/` | Pi installer for Windows (optional on-ramp, see below) |
