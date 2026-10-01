@@ -14,5 +14,5 @@ All 12 skills in `skills/`, installed per agent via the [skills CLI](https://ski
 | [ux-clarity](../skills/ux-clarity) | Interface microcopy: labels, buttons, helper text, error and empty states |
 | [ux-onboarding](../skills/ux-onboarding) | First-run onboarding, activation, and guided setup flows |
 | [ux-resilience](../skills/ux-resilience) | Edge-case hardening: error states, i18n, text overflow, accessibility |
-| [vscode](../skills/vscode) | Opens diffs and file comparisons in VS Code |
+| [open-diff](../skills/open-diff) | Opens diffs and file comparisons in VS Code or Zed |
 | [watch-video](../skills/watch-video) | Turns a video into a timestamped watch pack (transcript + frames) |
