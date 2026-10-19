@@ -1,15 +1,17 @@
 # Skills
 
-All 12 skills in `skills/`, installed per agent via the [skills CLI](https://skills.sh). See the README for the install commands.
+All 14 skills in `skills/`, installed per agent via the [skills CLI](https://skills.sh). See the README for the install commands.
 
 | Skill | What it does |
 |---|---|
 | [antislop](../skills/antislop) | Filters AI-generated UI, copy, and code-comment slop: purpose test, mandatory rules, Delivery Gate |
+| [bug-hunt](../skills/bug-hunt) | Hunts bugs from a hotspot map, or sweeps a known defect for its siblings; every finding backed by a repro or a traced path |
 | [docs-seeker](../skills/docs-seeker) | Finds tech docs via llms.txt/context7, GitHub repo analysis (Repomix), parallel exploration |
 | [i-have-adhd](../skills/i-have-adhd) | Shapes responses for a reader with ADHD: action-first, numbered steps, no preamble or closers |
 | [image-fetcher](../skills/image-fetcher) | Fetches a free-licensed image and drops it into the project (Openverse/NASA/Wikimedia, needs `uv`) |
 | [pitch](../skills/pitch) | Writes the document that sells a project to a skimmer: READMEs, repo descriptions, landing heroes, taglines |
 | [search](../skills/search) | Deep research powered by Exa: lead gen, literature reviews, competitive analysis |
+| [security-audit](../skills/security-audit) | Finds vulnerabilities crossing a trust boundary: source trace, priority, smallest fix |
 | [show-me](../skills/show-me) | Explains a topic visually: diagrams, code-shape sketches, focused HTML |
 | [ux-clarity](../skills/ux-clarity) | Interface microcopy: labels, buttons, helper text, error and empty states |
 | [ux-onboarding](../skills/ux-onboarding) | First-run onboarding, activation, and guided setup flows |
