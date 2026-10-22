@@ -1,6 +1,6 @@
 # Skills
 
-All 14 skills in `skills/`, installed per agent via the [skills CLI](https://skills.sh). See the README for the install commands.
+All 15 skills in `skills/`, installed per agent via the [skills CLI](https://skills.sh). See the README for the install commands.
 
 | Skill | What it does |
 |---|---|
@@ -14,6 +14,7 @@ All 14 skills in `skills/`, installed per agent via the [skills CLI](https://ski
 | [security-audit](../skills/security-audit) | Finds vulnerabilities crossing a trust boundary: source trace, priority, smallest fix |
 | [show-me](../skills/show-me) | Explains a topic visually: diagrams, code-shape sketches, focused HTML |
 | [ux-clarity](../skills/ux-clarity) | Interface microcopy: labels, buttons, helper text, error and empty states |
+| [ux-feedback](../skills/ux-feedback) | System status visibility: action acknowledgment, progress, backstage signals, state changes |
 | [ux-onboarding](../skills/ux-onboarding) | First-run onboarding, activation, and guided setup flows |
 | [ux-resilience](../skills/ux-resilience) | Edge-case hardening: error states, i18n, text overflow, accessibility |
 | [open-diff](../skills/open-diff) | Opens diffs and file comparisons in VS Code or Zed |
