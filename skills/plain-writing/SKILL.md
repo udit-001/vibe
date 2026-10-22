@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 A prose standard for deliverables the reader must act on: docs, READMEs, RFCs, PR descriptions, commit messages, changelogs. The reader is a tired engineer reading once. Every rule below serves that person.
 
-Boundaries: the **antislop** skill owns the AI-tell catalog and UI copy; apply its copywriting reference to everything this skill touches, and do not re-list tells here. The **pitch** skill owns the document that sells a project to a skimmer. Chat replies follow the Focus output style. This skill owns the prose itself.
+Out of scope: interactive product UI strings and conversational replies, which follow product copy guidelines instead.
 
 ## Three rules above the rest
 
@@ -62,6 +62,16 @@ A document can obey every rule above and still read machine-written: every sente
 - Have a view where the mode allows it. Explanation weighs trade-offs, so say what you make of them instead of listing pros and cons. Reference stays dry.
 - Be specific over sterile: not "schema changes can cause issues" but "a column rename fails the build".
 
+## Avoid the machine voice
+
+- Cut the AI vocabulary: *unlock, elevate, empower, delve, showcase, robust, seamless, game-changer, cutting-edge, revolutionary*.
+- Cut filler: "in order to" is "to"; "due to the fact that" is "because"; "it is important to note that" is nothing.
+- Cut hedging stacks: "could potentially possibly" is "may".
+- No em dashes: use a period, comma, colon, or parentheses.
+- Skip the forced rule of three, "not just X but Y", and synonym cycling; repeat the clearest word instead of rotating synonyms.
+- No decorative emoji in headings or bullets.
+- Do not over-sterilize. Stripping every quirk produces copy no person wrote either. When the user supplies a voice, keep it.
+
 ## PR descriptions and commit messages
 
 They are writing too; every rule above applies except the mode compass. A PR body is a briefing a reviewer reads in under a minute:
@@ -74,7 +84,7 @@ They are writing too; every rule above applies except the mode compass. A PR bod
 
 1. **Pick the mode** for the document before writing a sentence.
 2. **Draft**, applying the sentence rules and the codebase word list.
-3. **Audit**: read it aloud; run the antislop copywriting reference over it. A sentence you stumble on reading aloud is not done.
+3. **Audit**: read it aloud, then scan for the machine-voice tells above. A sentence you stumble on reading aloud is not done.
 4. **Final**: fix what the audit surfaced, then check the checklist below.
 
 Done when every claim is checkable, every instruction is executable on the first read, and the mode never shifts mid-document.
@@ -96,5 +106,6 @@ After:
 - [ ] Every fact names its actor and its real symbol, path, or flag from the codebase
 - [ ] No sentence over ~25 words carrying two thoughts; no noun strings, no ambiguous "it"/"this"
 - [ ] One name per concept across the document; sentence-case headings that carry the point
-- [ ] Sentence lengths vary; specific facts over sterile claims; no unverified numbers (antislop R-17)
+- [ ] Sentence lengths vary; specific facts over sterile claims; no unverified numbers or invented facts
+- [ ] No AI vocabulary, filler phrases, hedging stacks, em dashes, or decorative emoji
 - [ ] PR bodies state what changed, what needs eyes, and what was not verified, within a one-minute read
