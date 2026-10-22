@@ -68,7 +68,7 @@ The core's Delivery Gate remains the gate; the "Code Comment Checklist" at the e
 
 - **Tell:** comments that assert their own importance to survive review: `// IMPORTANT: do not remove`, `// too risky to change`, `// fine for now`.
 - **Why:** the assertion is the comment vouching for itself. A real constraint stays obvious after reading the nearby code; a fake one only sounds important.
-- **Fix:** verify the claim against the code it guards before preserving it. A claim that survives the check earns plain wording without the label; one that does not is noise like any other.
+- **Fix:** verify the claim against the code it guards before preserving it. A claim that survives the check earns plain wording without the label; one that does not is noise like any other. For a verified constraint, a comment is the weakest enforcement available: prefer the cheapest in-scope encoding -- a type, a runtime assertion, a test, a lint rule -- and delete the comment once the constraint enforces itself. Encode only with the reader's approval on the shape; otherwise keep the claim as plain wording.
 
 ### End Markers
 
