@@ -23,6 +23,38 @@ The core's Delivery Gate remains the gate; the "Copywriting Skill Checklist" at 
   > Work with your team in one shared space.
 - **Rule:** R-16 (buzzwords), R-36 (no fabricated claims).
 
+### Superficial -ing Phrases
+
+- **The pattern:** a participial phrase hanging off a claim to gesture at value: "highlighting the importance of X", "ensuring seamless performance", "reflecting our commitment to Y", "showcasing our capabilities".
+- **Why it reads as AI:** the -ing verb claims an action while performing none. "Ensuring" never ensures anything; the sentence says what the product gestures at, not what it does.
+- **Before:**
+  > Our platform integrates with your stack, highlighting potential issues and ensuring faster resolution.
+- **After:**
+  > The platform flags failing checks in your stack and shows the fix on the same screen.
+- **Rule:** R-16, R-36.
+
+### Fancy Copulas
+
+- **The pattern:** "serves as", "stands as", "acts as", "boasts", "features" where "is" or "has" works: "the dashboard serves as your command center".
+- **Why it reads as AI:** the dressed-up verb implies a role or ceremony the plain verb does not, and the dress-up is a habit, not a distinction. Most of the time the thing simply is the thing.
+- **Before:**
+  > The sidebar serves as your navigation hub and boasts a search feature.
+- **After:**
+  > The sidebar holds the navigation and has a search box.
+- **Rule:** R-02, R-16.
+- **Not a ban:** "serves as" earns its place when the thing genuinely plays a second role: "the config file serves as the deployment contract". The tell is the fancy copula used as a default verb.
+
+### Abstract Metaphor Nouns
+
+- **The pattern:** a technical-sounding metaphor standing in for a concrete word: *substrate* (base), *wedge* (a way in), *vector* (a method), *locus*, *nexus*, *paradigm*, *bedrock*, *north star*, *flywheel*, *harness* (as a metaphor), *modality*, *primitive* (as a noun), *scaffolding* (as a metaphor).
+- **Why it reads as AI:** the metaphor sounds analytical while naming nothing testable. It gives the sentence a texture of depth without the depth, and the nouns travel in clusters.
+- **Before:**
+  > Your design system is the bedrock substrate that becomes a flywheel for innovation across the developer surface.
+- **After:**
+  > Reuse the shared components and new pages ship faster.
+- **Rule:** R-16.
+- **Not a ban:** a term the domain already owns keeps its name. An API's surface area, React's primitives, real scaffolding tools are established vocabulary. The tell is metaphor chosen for flavor where the concrete word is shorter and says more.
+
 ### Significance Inflation
 
 - **The pattern:** "the future of X", "marking a pivotal moment", "a testament to", "revolutionizing", "a new era of".
@@ -188,6 +220,50 @@ The core's Delivery Gate remains the gate; the "Copywriting Skill Checklist" at 
   > Handles quotes, invoices, and payment reminders.
 - **Rule:** R-36.
 
+## Plain Speech
+
+### Feels Over Mechanism
+
+- **The pattern:** a sentence naming a feeling instead of what happens: "the database stays close at hand", "SQL you can read", "types that follow your schema", "a setup that just feels right".
+- **Why it reads as AI:** the feeling is unfalsifiable. The mechanism or the number can be checked, quoted, and remembered, and it is what the reader needs to act.
+- **The test:** ask what the sentence tells the reader to do or know. If it cannot be restated as an instruction, a fact, or a number, cut it. If the sentence could appear unchanged in another project's docs, it says nothing about this one.
+- **Before:**
+  > Migrations feel effortless, giving you database confidence at every step.
+- **After:**
+  > Migrations run in one command and roll back with a second.
+- **Rule:** R-02, R-36.
+
+### Dense Sentences
+
+- **The pattern:** a sentence the reader must backtrack to parse: clauses stacked left and right, a subject three lines away from its verb, two ideas sharing one sentence.
+- **Why it reads as AI:** the model packs claims into one sentence to sound thorough, and the reader pays the parsing cost. A person explaining splits the thought when the listener frowns; text has no frown to react to.
+- **Before:**
+  > The parser, which validates the payload against the schema that the endpoint declares, rejects the request before the handler that would otherwise process it runs.
+- **After:**
+  > The parser validates the payload against the endpoint's schema and rejects bad requests before the handler runs.
+- **Rule:** R-02.
+
+### Propped-Up Verbs
+
+- **The pattern:** an adverb carrying a weak verb: "runs quickly", "significantly improves", "vastly simplifies", "highly configurable".
+- **Why it reads as AI:** the adverb props up a verb that should be replaced or a claim that should be measured. The stronger verb or the number says in one word what the adverb only implies.
+- **Before:**
+  > Our engine significantly improves startup performance.
+- **After:**
+  > Our engine cuts cold start from 1.8s to 0.4s. [Use the real numbers or cut the claim.]
+- **Rule:** R-02, R-17, R-36.
+
+### Over-Compression
+
+- **The pattern:** dropped articles, verbless fragments, and symbol-speak that make the reader decode instead of read: "Parser rejects bad date → exit 2, no write", "Config-first approach. Zero boilerplate."
+- **Why it reads as AI:** the compression imitates engineering coolness but pushes the decoding work onto the reader, and it stacks up until the page reads like release notes written for no one.
+- **Before:**
+  > Invalid input → early return. No state mutated. Fail fast, fail safe.
+- **After:**
+  > The function returns early on invalid input without touching state, so a bad payload never reaches the database.
+- **Rule:** R-02.
+- **Not a ban:** genuine technical shorthand has its places -- changelog entries, commit messages, code comments, tables. The tell is compressed fragments running through prose that should read as sentences.
+
 ## Honesty & Evidence
 
 ### Fabricated Specifics
@@ -284,6 +360,28 @@ The core's Delivery Gate remains the gate; the "Copywriting Skill Checklist" at 
   > The product ships in Q3. User research showed a preference for simple pricing.
 - **Rule:** R-36.
 
+### Title-Case Headings
+
+- **The pattern:** headings in Title Case with every major word capitalized: "How We Handle Your Data Securely".
+- **Why it reads as AI:** title case is a formatting default applied without deciding, and stacked on other tells it makes the page read as generated.
+- **Before:**
+  > ## Why Teams Choose Our Platform For Secure Deployments
+- **After:**
+  > ## Why teams choose us for secure deployments
+- **Rule:** R-02.
+- **Not a ban:** a publication whose house style is title case keeps it; match the document's existing convention. The tell is title case appearing where the surrounding headings use sentence case.
+
+### Colon Connectors
+
+- **The pattern:** a colon used mid-sentence as a connector where no list or explanation follows: "If you're coming from traditional automation: instead of registering handlers, you describe conditions".
+- **Why it reads as AI:** the colon is a crutch for comparison framing that adds no information, and the sentence reads fine without it.
+- **Before:**
+  > Coming from REST: you no longer write handlers per route, you describe the data each screen needs.
+- **After:**
+  > Coming from REST, you no longer write a handler per route. You describe the data each screen needs.
+- **Rule:** R-02.
+- **Not a ban:** a colon before a list, an example, or an explanation is correct punctuation. The tell is the colon standing in for a conjunction the sentence needs.
+
 ### Filler Phrases
 
 - **The pattern:** "In order to" for "to", "Due to the fact that" for "because", "At this point in time" for "now", "It is important to note that" for nothing.
@@ -362,4 +460,7 @@ Run these alongside the core Delivery Gate when the task is copy work. Every lin
 - [ ] CTAs specific to the action, not generic templates (R-15)
 - [ ] No AI-rhythm tells: no forced rule of three, no negative parallelism, no staccato drama, no aphorism formulas, no false ranges (R-36)
 - [ ] Voice present: the copy has a real voice (the user's sample or a clearly chosen tone), not a sterile default (R-37)
+- [ ] Claims name the mechanism, fact, or number rather than the feeling: no unfalsifiable vibe-sentences (R-02, R-36)
+- [ ] No abstract metaphor nouns, fancy copulas, superficial -ing phrases, or propped-up verbs where the concrete word works (R-16)
+- [ ] Sentences parse on first read; symbol-speak and fragments expanded into whole sentences in prose (R-02)
 - [ ] Read aloud: the copy sounds like a person wrote it, not like a model padded it
