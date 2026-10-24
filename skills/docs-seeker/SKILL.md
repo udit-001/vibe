@@ -15,9 +15,9 @@ Pin down exactly one thing to document — a library, framework, repo, or websit
 **Done when:** you can state the target and version in one line.
 
 ### 2. llms.txt-first
-Construct the llms.txt URL directly and fetch it, before any web search. context7 is the fast path; official docs are the fallback. Patterns live in [llms-txt.md](references/llms-txt.md).
+Construct the llms.txt URL and fetch it, before any web search. context7 is the fast path — id shapes, slug rule, and id resolver in [llms-txt.md](references/llms-txt.md); official docs are the fallback.
 
-**Done when:** you hold a list of 0+ documentation URLs, **or** you've confirmed llms.txt doesn't exist (404 / empty) and are ready to descend to the repository step.
+**Done when:** you hold a list of 0+ documentation URLs, **or** context7 answers 404 / `No content available` and you're ready to descend to the repository step.
 
 ### 3. Repository
 Only when llms.txt yields nothing: find the official repo, clone shallow, and pack with Repomix. If there's no repo either, fall back to research over the package registry, official site, and community. Details in [repo.md](references/repo.md).
